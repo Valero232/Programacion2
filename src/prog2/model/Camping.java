@@ -4,6 +4,7 @@ import prog2.vista.ExcepcioReserva;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Camping implements InCamping {
 
@@ -18,6 +19,11 @@ public class Camping implements InCamping {
     public Camping(String nom){
 
     }
+
+    public static InAllotjament.Temp getTemporada(LocalDate dataEntrada) {
+
+    }
+
     /**
      * Retorna el nom del càmping.
      *
@@ -25,7 +31,7 @@ public class Camping implements InCamping {
      */
     @Override
     public String getNom() {
-        return "";
+        return nom;
     }
 
     /**
@@ -35,7 +41,7 @@ public class Camping implements InCamping {
      */
     @Override
     public LlistaReserves getLlistaReserves() {
-        return null;
+        return listaReserva;
     }
 
     /**
@@ -43,7 +49,7 @@ public class Camping implements InCamping {
      */
     @Override
     public ArrayList<Allotjament> getLlistaAllotjaments() {
-        return null;
+        return listaAllotjament;
     }
 
     /**
@@ -53,7 +59,7 @@ public class Camping implements InCamping {
      */
     @Override
     public ArrayList<Client> getLlistaClients() {
-        return null;
+        return listaClient;
     }
 
     /**
@@ -63,7 +69,7 @@ public class Camping implements InCamping {
      */
     @Override
     public int getNumAllotjaments() {
-        return 0;
+        return listaAllotjament.size();
     }
 
     /**
@@ -73,7 +79,7 @@ public class Camping implements InCamping {
      */
     @Override
     public int getNumReserves() {
-        return 0;
+        return listaReserva.size();
     }
 
     /**
@@ -83,7 +89,7 @@ public class Camping implements InCamping {
      */
     @Override
     public int getNumClients() {
-        return 0;
+        return listaClient.size();
     }
 
     /**
@@ -95,6 +101,8 @@ public class Camping implements InCamping {
     @Override
     public void afegirClient(String nom_, String dni_) {
 
+        Client client = new Client(nom_, dni_);
+        listaClient.add(client);
     }
 
     /**
@@ -107,8 +115,8 @@ public class Camping implements InCamping {
      */
     @Override
     public void afegirParcela(String nom_, String idAllotjament_, float metres, boolean connexioElectrica) {
-
-
+    Parcela parcela = new Parcela(nom_, idAllotjament_, metres, connexioElectrica);
+    listaAllotjament.add(parcela);
     }
 
     /**
@@ -126,7 +134,8 @@ public class Camping implements InCamping {
      */
     @Override
     public void afegirBungalow(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred) {
-
+        Bungalow bungalow = new Bungalow(nom_, idAllotjament_, mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred);
+        listaAllotjament.add(bungalow);
     }
 
     /**
@@ -147,7 +156,8 @@ public class Camping implements InCamping {
      */
     @Override
     public void afegirBungalowPremium(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred, boolean serveisExtra, String codiWifi) {
-
+        BungalowPremium bungalowPremium = new BungalowPremium(nom_, idAllotjament_, mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred, serveisExtra, codiWifi);
+        listaAllotjament.add(bungalowPremium);
     }
 
     /**
@@ -164,7 +174,8 @@ public class Camping implements InCamping {
      */
     @Override
     public void afegirGlamping(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, String material, boolean casaMascota) {
-
+        Glamping glamping = new Glamping(nom_, idAllotjament_, mida, habitacions, placesPersones, material, casaMascota);
+        listaAllotjament.add(glamping);
     }
 
     /**
@@ -180,7 +191,8 @@ public class Camping implements InCamping {
      */
     @Override
     public void afegirMobilHome(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, boolean terrassaBarbacoa) {
-
+        MobilHome mobilHome = new MobilHome(nom_, idAllotjament_, mida, habitacions, placesPersones,terrassaBarbacoa);
+        listaAllotjament.add(mobilHome);
     }
 
     /**
@@ -194,7 +206,6 @@ public class Camping implements InCamping {
      */
     @Override
     public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
-
     }
 
     /**
@@ -204,7 +215,15 @@ public class Camping implements InCamping {
      */
     @Override
     public int calculAllotjamentsOperatius() {
-        return 0;
+        int operatiusTmp = 0;
+        Iterator <Allotjament> itr = listaAllotjament.iterator();
+        while(itr.hasNext()){
+            if (itr.next().correcteFuncionament())
+            {
+                operatiusTmp++;
+            }
+        }
+        return operatiusTmp;
     }
 
     /**
