@@ -35,15 +35,29 @@ public abstract class Allotjament implements InAllotjament{
     }
 
     public long getEstadaMinima(Temp temp){
-        if (temp == Temp.BAIXA){
-            return estadaMinimaBAIXA;
+        long tmp =0;
+        switch(temp){
+            case ALTA:
+                tmp = estadaMinimaALTA;
+                break;
+            case BAIXA:
+                tmp = estadaMinimaBAIXA;
+                break;
         }
-        return estadaMinimaALTA;
+        return tmp;
     }
 
     public void setEstadaMinima(long estadaMinimaALTA_, long estadaMinimaBAIXA_){
        estadaMinimaALTA = estadaMinimaALTA_;
        estadaMinimaBAIXA = estadaMinimaBAIXA_;
+    }
+
+    @Override
+    public String toString(){
+        long estadaAlta =
+        long estadaBaixa =
+        return = "Nom="+nom+",Id="+idAllotjament+",estada mínima en temp ALTA:"+estadaMinimaALTA+"4, estada mínima en temp \n" +
+                "BAIXA: "+estadaMinimaBAIXA+"."+
     }
 
     public abstract boolean correcteFuncionament();
