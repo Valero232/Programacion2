@@ -30,6 +30,10 @@ public class Parcela extends Allotjament {
     @Override
     public boolean correcteFuncionament(){
         //Si la parcel·la te un punt de connexió elèctrica això significa que funciona correctament.
-        return this.connexio;
+        boolean correcteFuncionament = false;
+        if (connexio){
+            correcteFuncionament = true;
+        }
+        return correcteFuncionament;
     }
 }

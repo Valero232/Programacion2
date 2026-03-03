@@ -13,7 +13,19 @@ public class BungalowPremium extends Bungalow{
         this.codiWifi = codiWifi;
     }
 
+   public boolean getServeisExtra(){
+    return serveisExtra;
+   }
+   public String getCodiWifi(){
+        return codiWifi;
+   }
 
+   public void setServeisExtra(boolean serveisExtra){
+        this.serveisExtra = serveisExtra;
+   }
+   public void setCodiWifi(String codiWifi){
+        this.codiWifi = codiWifi;
+   }
 
     @Override
     public boolean correcteFuncionament(){

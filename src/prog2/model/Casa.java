@@ -6,8 +6,7 @@ public abstract class Casa extends Allotjament{
     private int numHabitacions;
     private int capacitat;
 
-    public Casa(String nom, String idAllotjament, long estadaMinimaALTA,
-                long estadaMinimaBAIXA, String mida, int numHabitacions, int capacitat){
+    public Casa(String nom, String idAllotjament, long estadaMinimaALTA, long estadaMinimaBAIXA, String mida, int numHabitacions, int capacitat){
         super(nom,idAllotjament,estadaMinimaALTA,estadaMinimaBAIXA);
         this.mida = mida;
         this.numHabitacions = numHabitacions;
