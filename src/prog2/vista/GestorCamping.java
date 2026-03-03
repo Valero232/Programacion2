@@ -3,6 +3,8 @@ package prog2.vista;
 
 import prog2.model.Camping;
 
+import java.time.LocalDate;
+
 
 /**
  * Classe per gestionar els allotjaments del Càmping del Mar.

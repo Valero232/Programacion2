@@ -4,6 +4,7 @@ import prog2.vista.ExcepcioReserva;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Camping implements InCamping {
 
@@ -17,6 +18,9 @@ public class Camping implements InCamping {
 
     public Camping(String nom){
 
+        listaAllotjament = new ArrayList<Allotjament>();
+        listaClient = new ArrayList<Client>();
+        listaReserva = new ArrayList<>();
     }
     /**
      * Retorna el nom del càmping.
@@ -194,8 +198,33 @@ public class Camping implements InCamping {
      */
     @Override
     public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
+        //busquem l'allotjament per id
+        Allotjament allotjament = ____ (id);
+        if(){
+            throw new ExcepcioReserva("L'allotjament amb id " + id + " no existeix");
+        }
+
+        // busque el client per le dni
+        Client client = --- (dni);
+        if (client == null){
+            throw new ExcepcioReserva("El client amb DNI "+ dni+ " no exiteix");
+        }
+        // afegir reserva pq tdo esta perfe
 
     }
+
+    private  Allotjament buscarAllotjament(String id){
+        Iterator<Allotjament> itr = listaAllotjament.iterator();
+        while(itr.hasNext()){
+            Allotjament espaiTmp = itr.next();
+            if (espaiTmp.getId().equals(id)){
+                return espaiTmp;
+            }
+        }
+        return null;
+    }
+
+
 
     /**
      * Recorre la llista de serveis comprovant el correcte funcionament de cadascun d'ells per contar el número de serveis que estan operatius.
