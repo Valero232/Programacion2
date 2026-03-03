@@ -3,9 +3,16 @@ package prog2.model;
 import prog2.vista.ExcepcioReserva;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import java.util.Iterator;
 
 public class LlistaReserves implements InLlistaReserves{
 
+    // Atributs
+
+    private ArrayList <Reserva> llistaReserves;
     /**
      * Comprova que l'estada que es demani sigui més llarga o igual que l'estada mínima.
      * Comprova que l'allotjament estigui disponible pels dies indicats.
@@ -38,14 +45,16 @@ public class LlistaReserves implements InLlistaReserves{
         return 0;
     }
 
+
+
+
     private boolean allotjamentDisponible(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida){
         boolean disponible = true;
 
-        iterator<Reserva> itr = llistaReserves.iterator();
-        while(itr.hasNext){
+        Iterator<Reserva> itr = llistaReserves.iterator();
+        while(itr.hasNext()){
             Reserva reserva = itr.next();
             if(reserva){
-
                 //Per completar
                 LocalDate dataEntradaReservada = reserva.getDataEntrada(),
                 LocalDate =dataEntradaReservada = reserva.dataEntrada(),
@@ -55,10 +64,15 @@ public class LlistaReserves implements InLlistaReserves{
     }
 
     private boolean isEstadaMinima(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida){
-        long estada = Chronounit.DAYS.between(dataEntrada,dataSortida);
+        boolean tmpEstada = false;
+        long estada = ChronoUnit.DAYS.between(dataEntrada,dataSortida);
 
-        InAllotjament.Temp temp = Camping.getTemporada(dataEntrada);
-        long estadaMinima = allotjament
+        InAllotjament.Temp temp = Camping.getTemporada(dataEntrada); //crear getTemporada en camping
+        long estadaMinima = allotjament.getEstadaMinima(temp);
 
+        if (estada >= estadaMinima){
+            tmpEstada = true;
+        }
+        return tmpEstada;
     }
 }
