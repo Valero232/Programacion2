@@ -27,7 +27,7 @@ public class LlistaReserves implements InLlistaReserves{
      */
     @Override
     public void afegirReserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
-        if(isEstadaMinima){
+        if(isEstadaMinima(allotjament, dataEntrada, dataSortida)){
             if (allotjamentDisponible()) {
             }
         }

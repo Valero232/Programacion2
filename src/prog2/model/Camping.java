@@ -243,8 +243,33 @@ public class Camping implements InCamping {
      */
     @Override
     public Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp) {
-        boolean primerCop = true;
+        boolean primerCop = false;
+        Allotjament allotjamentEstadaMin = null;
+        long estadaCurta = 0;
 
+        Iterator <Allotjament> itr = listaAllotjament.iterator();
+        while(itr.hasNext()) {
+            if(!primerCop)
+            {
+                allotjamentEstadaMin = itr.next();
+                estadaCurta = allotjamentEstadaMin.getEstadaMinima(temp);
+                primerCop = true;
+            }
+            else {
+                Allotjament allotjamentTmp = itr.next();
+                long estadaCurtaTmp = allotjamentTmp.getEstadaMinima(temp);
+                if (estadaCurtaTmp < estadaCurta)
+                {
+                    allotjamentEstadaMin = allotjamentTmp;
+                    estadaCurta = estadaCurtaTmp;
+                }
+            }
+        }
+        return allotjamentEstadaMin;
+    }
+
+
+/*
         Iterator <Allotjament> itr = listaAllotjament.iterator();
         Allotjament allotjamentEstadaMin = itr.next();
         long estadiaCurta = itr.next().getEstadaMinima(temp);
@@ -255,4 +280,7 @@ public class Camping implements InCamping {
         }
         return allotjamentEstadaMin;
     }
+    */
 }
+
+

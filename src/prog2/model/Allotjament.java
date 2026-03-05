@@ -57,7 +57,7 @@ public abstract class Allotjament implements InAllotjament{
         long estadaAlta =
         long estadaBaixa =
         return = "Nom="+nom+", Id="+idAllotjament+", estada mínima en temp ALTA: "+estadaMinimaALTA+", estada mínima en temp " +
-                "BAIXA: "+estadaMinimaBAIXA+". "
+                "BAIXA: "+estadaMinimaBAIXA+". ";
     }
 
     public abstract boolean correcteFuncionament();
