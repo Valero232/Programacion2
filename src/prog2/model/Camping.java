@@ -14,14 +14,13 @@ public class Camping implements InCamping {
     private String nom;
     private ArrayList<Allotjament> listaAllotjament;
     private ArrayList<Client> listaClient;
-    private ArrayList<Reserva> listaReserva;
+    private LlistaReserves llistaReserves;
 
 
     public Camping(String nom){
         this.nom = nom;
         this.listaAllotjament = new ArrayList<Allotjament>();
         this.listaClient = new ArrayList<Client>();
-        this.listaReserva = new ArrayList<Reserva>();
     }
 
     public static InAllotjament.Temp getTemporada(LocalDate dataEntrada) {
@@ -50,7 +49,7 @@ public class Camping implements InCamping {
      */
     @Override
     public LlistaReserves getLlistaReserves() {
-        return listaReserva;
+        return llistaReserves;
     }
 
     /**
@@ -88,7 +87,7 @@ public class Camping implements InCamping {
      */
     @Override
     public int getNumReserves() {
-        return listaReserva.size();
+        return llistaReserves.getNumReserves();
     }
 
     /**
@@ -215,6 +214,10 @@ public class Camping implements InCamping {
     @Override
     public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva{
 
+            Allotjament allotjamentActual = buscarAllotjament(id_);
+            Client clientActual = buscarClient(dni_);
+            llistaReserves.afegirReserva(allotjamentActual, clientActual, dataEntrada, dataSortida);
+            System.out.println("Reserva feta amb exit!");
     }
     /*
     retornarà l’allotjament corresponent a un identificador passat com a paràmetre

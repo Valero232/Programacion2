@@ -13,6 +13,20 @@ public class LlistaReserves implements InLlistaReserves{
     // Atributs
 
     private ArrayList <Reserva> llistaReserves;
+
+
+    // constructor
+    LlistaReserves(){
+    }
+
+    public void setLlistaReserves(ArrayList<Reserva> llistaReserves) {
+        this.llistaReserves = llistaReserves;
+    }
+
+    public ArrayList<Reserva> getLlistaReserves() {
+        return llistaReserves;
+    }
+
     /**
      * Comprova que l'estada que es demani sigui més llarga o igual que l'estada mínima.
      * Comprova que l'allotjament estigui disponible pels dies indicats.
@@ -25,16 +39,19 @@ public class LlistaReserves implements InLlistaReserves{
      * @param dataSortida
      * @throws ExcepcioReserva
      */
-
-    // constructor
-    LlistaReserves(){
-    }
-
     @Override
     public void afegirReserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
         if(isEstadaMinima(allotjament, dataEntrada, dataSortida)){
-            if (allotjamentDisponible()) {
+            if (allotjamentDisponible(allotjament, dataEntrada, dataSortida)) {
+                Reserva reservaActual = new Reserva(allotjament, client, dataEntrada, dataSortida);
+                llistaReserves.add(reservaActual);
             }
+            else{
+                throw new ExcepcioReserva("Allotjament no esta disponible per fer reserva");
+            }
+        }
+        else{
+            throw new ExcepcioReserva("Estada inferior a la minima.");
         }
     }
 
@@ -45,12 +62,18 @@ public class LlistaReserves implements InLlistaReserves{
      */
     @Override
     public int getNumReserves() {
-        return 0;
+        int contadorTmp = 0;
+        Iterator<Reserva> itr = llistaReserves.iterator();
+        while (itr.hasNext()) {
+            Reserva reserva = itr.next();
+            contadorTmp++;
+        }
+        return contadorTmp;
     }
 
 
 
-
+    // tenemos que mirar como se hace este, no entiendo el concepto y no puedo hacerlo.
     private boolean allotjamentDisponible(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida){
         boolean disponible = true;
 
@@ -59,9 +82,9 @@ public class LlistaReserves implements InLlistaReserves{
             Reserva reserva = itr.next();
             if(reserva){
                 //Per completar
-                LocalDate dataEntradaReservada = reserva.getDataEntrada(),
-                LocalDate =dataEntradaReservada = reserva.dataEntrada(),
-                if((dataEntrada.isAfter(dataEntradaReservada)))
+                LocalDate dataEntradaReservada = reserva.getDataEntrada();
+                LocalDate dataSortidaReservada = reserva.getDataSortida();
+                if((dataEntrada.isAfter(dataEntradaReservada)) && dataSortida.isBefore(dataSortidaReservada))
             }
         }
     }
