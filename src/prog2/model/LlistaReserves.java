@@ -25,6 +25,11 @@ public class LlistaReserves implements InLlistaReserves{
      * @param dataSortida
      * @throws ExcepcioReserva
      */
+
+    // constructor
+    LlistaReserves(){
+    }
+
     @Override
     public void afegirReserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
         if(isEstadaMinima(allotjament, dataEntrada, dataSortida)){

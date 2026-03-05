@@ -214,8 +214,35 @@ public class Camping implements InCamping {
      */
     @Override
     public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva{
-        
+
     }
+    /*
+    retornarà l’allotjament corresponent a un identificador passat com a paràmetre
+     */
+    private Allotjament buscarAllotjament(String id_) throws ExcepcioReserva{
+        Iterator<Allotjament> itr = listaAllotjament.iterator();
+
+        while(itr.hasNext()){
+            Allotjament allotjamentActual = itr.next();
+            if(allotjamentActual.getId().equals(id_)){
+                return allotjamentActual;
+            }
+        }
+            throw new ExcepcioReserva("No hi ha registrat un Allotjament amb id: "+ id_ + ".");
+    }
+
+    private Client buscarClient(String dni_) throws ExcepcioReserva{
+        Iterator<Client> itr = listaClient.iterator();
+
+        while(itr.hasNext()){
+            Client clientActual = itr.next();
+            if(clientActual.getDni().equals(dni_)){
+                return clientActual;
+            }
+        }
+        throw new ExcepcioReserva("No hi ha registrat un Client amb dni: "+ dni_ + ".");
+    }
+
 
     /**
      * Recorre la llista de serveis comprovant el correcte funcionament de cadascun d'ells per contar el número de serveis que estan operatius.
