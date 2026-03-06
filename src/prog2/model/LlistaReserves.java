@@ -17,6 +17,7 @@ public class LlistaReserves implements InLlistaReserves{
 
     // constructor
     LlistaReserves(){
+        llistaReserves = new ArrayList<Reserva>();
     }
 
     public void setLlistaReserves(ArrayList<Reserva> llistaReserves) {
@@ -73,9 +74,8 @@ public class LlistaReserves implements InLlistaReserves{
 
 
 
-    // tenemos que mirar como se hace este, no entiendo el concepto y no puedo hacerlo.
+
     private boolean allotjamentDisponible(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida){
-        boolean disponible = true;
 
         Iterator<Reserva> itr = llistaReserves.iterator();
         while(itr.hasNext()){
@@ -84,17 +84,14 @@ public class LlistaReserves implements InLlistaReserves{
                 //Per completar
                 LocalDate dataEntradaReservada = reserva.getDataEntrada();
                 LocalDate dataSortidaReservada = reserva.getDataSortida();
-                if(dataSortida.isBefore(dataEntradaReservada) || dataEntrada.isAfter(dataSortidaReservada)){
-                    return true;
+                if((dataEntrada.isBefore(dataSortidaReservada) && dataEntrada.isAfter(dataEntradaReservada)) ||
+                (dataSortida.isBefore(dataSortidaReservada) && dataSortida.isAfter(dataEntradaReservada))){
+                    return false;
                 }
             }
         }
-        return false;
+        return true;
     }
-    /* if(las fechas estan dentro del periodo no disponible){false}:
-
-    if(dataEntrada.isBefore(dataSortidaReservada) && dataEntrada.isAfter(dataEntradaReservada)) ||
-                    (dataSortida.isBefore(dataSortidaReservada) && dataSortida.isAfter(dataEntradaReservada))*/
 
     private boolean isEstadaMinima(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida){
         boolean tmpEstada = false;

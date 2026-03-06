@@ -14,7 +14,7 @@ public class Camping implements InCamping {
     private String nom;
     private ArrayList<Allotjament> listaAllotjament;
     private ArrayList<Client> listaClient;
-    private LlistaReserves llistaReserves;
+    private LlistaReserves llistaReserves = new LlistaReserves();
 
 
     public Camping(String nom){
@@ -231,7 +231,7 @@ public class Camping implements InCamping {
                 return allotjamentActual;
             }
         }
-            throw new ExcepcioReserva("No hi ha registrat un Allotjament amb id: "+ id_ + ".");
+            throw new ExcepcioReserva("L'allotjament amb id "+ id_+ " no existeix");
     }
 
     private Client buscarClient(String dni_) throws ExcepcioReserva{
@@ -243,7 +243,7 @@ public class Camping implements InCamping {
                 return clientActual;
             }
         }
-        throw new ExcepcioReserva("No hi ha registrat un Client amb dni: "+ dni_ + ".");
+        throw new ExcepcioReserva("El client amb DNI " + dni_ + " no existeix");
     }
 
 
