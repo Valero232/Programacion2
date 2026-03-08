@@ -23,6 +23,16 @@ public class Camping implements InCamping {
         this.listaClient = new ArrayList<Client>();
     }
 
+    /**
+     * Determina la temporada (ALTA o BAIXA) en funció de la data d'entrada proporcionada.
+     * La temporada alta comprèn des del 21 de març fins al 20 de setembre (ambdós inclosos).
+     * La temporada baixa comprèn la resta de l'any.
+     *
+     * @param dataEntrada La data per a la qual es vol determinar la temporada
+     * @return InAllotjament.Temp.ALTA si la data està dins del període de temporada alta (21/03 - 20/09),
+     *         InAllotjament.Temp.BAIXA en cas contrari
+     */
+
     public static InAllotjament.Temp getTemporada(LocalDate dataEntrada) {
         int dia = dataEntrada.getDayOfMonth();
         int mes = dataEntrada.getMonthValue();
@@ -219,9 +229,15 @@ public class Camping implements InCamping {
             llistaReserves.afegirReserva(allotjamentActual, clientActual, dataEntrada, dataSortida);
             System.out.println("Reserva feta amb exit!");
     }
-    /*
-    retornarà l’allotjament corresponent a un identificador passat com a paràmetre
+    /**
+     * Cerca un allotjament a la llista d'allotjaments del camping pel seu identificador.
+     * Recorre tota la llista d'allotjaments fins a trobar aquell que coincideixi amb l'ID proporcionat.
+     *
+     * @param id_ L'identificador de l'allotjament que es vol buscar
+     * @return L'allotjament amb l'ID especificat
+     * @throws ExcepcioReserva Si no existeix cap allotjament amb l'ID proporcionat a la llista
      */
+
     private Allotjament buscarAllotjament(String id_) throws ExcepcioReserva{
         Iterator<Allotjament> itr = listaAllotjament.iterator();
 
@@ -233,6 +249,15 @@ public class Camping implements InCamping {
         }
             throw new ExcepcioReserva("L'allotjament amb id "+ id_+ " no existeix");
     }
+
+    /**
+     * Cerca un client a la llista de clients del camping pel seu DNI.
+     * Recorre tota la llista de clients fins a trobar aquell que coincideixi amb el DNI proporcionat.
+     *
+     * @param dni_ El DNI del client que es vol buscar
+     * @return El client amb el DNI especificat
+     * @throws ExcepcioReserva Si no existeix cap client amb el DNI proporcionat a la llista
+     */
 
     private Client buscarClient(String dni_) throws ExcepcioReserva{
         Iterator<Client> itr = listaClient.iterator();
