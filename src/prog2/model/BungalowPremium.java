@@ -33,4 +33,9 @@ public class BungalowPremium extends Bungalow{
         if (super.correcteFuncionament() && codiWifi.length() >= 8 && codiWifi.length()<= 16) correcteFuncionament = true;
         return correcteFuncionament;
     }
+
+    @Override
+    public String toString(){
+        return super.toString()+"Premium{serveisExtra="+serveisExtra+", codiWifi="+codiWifi+"}";
+    }
 }

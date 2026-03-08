@@ -36,4 +36,9 @@ public abstract class Casa extends Allotjament{
     public void setCapacitat(int capacitat){
         this.capacitat = capacitat;
     }
+
+    @Override
+    public String toString(){
+        return super.toString()+" Casa{mida="+mida+", numHabitacions="+numHabitacions+", capacitat="+capacitat+"}";
+    }
 }

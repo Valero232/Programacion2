@@ -4,12 +4,12 @@ public class Bungalow extends Casa{
     //Atributs
     private int numPlaces;
     private boolean aireFred;
-    private boolean terrasa;
+    private boolean terrassa;
     private boolean televisio;
 
     public Bungalow(String nom, String idAllotjament, String mida, int numHabitacions, int capacitat, int numPlaces, boolean terrasa, boolean televisio, boolean aireFred) {
         super(nom, idAllotjament, 7, 4, mida, numHabitacions, capacitat);
-        this.terrasa = terrasa;
+        this.terrassa = terrasa;
         this.televisio = televisio;
         this.aireFred = aireFred;
     }
@@ -22,7 +22,7 @@ public class Bungalow extends Casa{
         return aireFred;
     }
     public boolean getTerrasa(){
-        return terrasa;
+        return terrassa;
     }
     public boolean getTelevisio(){
         return televisio;
@@ -38,7 +38,7 @@ public class Bungalow extends Casa{
     }
 
     public void setTerrasa(boolean terrasa){
-        this.terrasa = terrasa;
+        this.terrassa = terrasa;
     }
     public void setTelevisio(boolean televisio){
         this.televisio = televisio;
@@ -51,5 +51,10 @@ public class Bungalow extends Casa{
         boolean funcionamentCorrecte = false;
         if (aireFred) funcionamentCorrecte = true;
         return funcionamentCorrecte;
+    }
+
+    @Override
+    public String toString(){
+        return super.toString()+" Bungalow{numPlaces="+numPlaces+", aireFred="+aireFred+", terrassa="+terrassa+", televisió="+televisio+"}";
     }
 }

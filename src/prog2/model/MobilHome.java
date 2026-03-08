@@ -25,4 +25,9 @@ public class MobilHome extends Casa{
         }
         return correcteFuncionament;
     }
+
+    @Override
+    public String toString(){
+        return super.toString()+"Mobil-Home{terrassaBarbacoa="+terrassaBarbacoa+"}";
+    }
 }

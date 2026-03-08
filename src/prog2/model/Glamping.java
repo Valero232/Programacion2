@@ -32,4 +32,9 @@ public class Glamping extends Casa{
         if(casaPerMascotes) correcteFuncionament = true;
         return correcteFuncionament;
     }
+
+    @Override
+    public String toString(){
+        return super.toString()+"Glamping{tipus="+tipus+", casaPerMascotes="+casaPerMascotes+"}";
+    }
 }
